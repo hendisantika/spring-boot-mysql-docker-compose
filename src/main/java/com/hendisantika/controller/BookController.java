@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -39,6 +40,22 @@ public class BookController {
         model.addAttribute("books", booksList);
 
         logger.info("*** displayForm () method execution end ***");
+        return "index";
+    }
+
+    @PostMapping("/")
+    public String saveBook(Book book, Model model) {
+        logger.info("*** saveBook () method execution start ***");
+        bookRepository.save(book);
+        List<Book> booksList = bookRepository.findAll();
+        model.addAttribute("books", booksList);
+
+        Book bookObj = new Book();
+        model.addAttribute("book", bookObj);
+
+
+        model.addAttribute("msg", "Book Saved Successfully");
+        logger.info("*** saveBook () method execution end ***");
         return "index";
     }
 
