@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  mysqldb:
+    image: mysql:8.0.33
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: books
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - my_network
+
+  app:
+    image: spring-boot-mysql-app:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysqldb
+    networks:
+      - my_network
+
+networks:
+  my_network:
+
+volumes:
+  mysql-data:
