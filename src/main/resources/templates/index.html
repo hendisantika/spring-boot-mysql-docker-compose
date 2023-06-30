@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Mr. HENDISANTIKA</title>
+
+    <style>
+        .button {
+            background-color: #008CBA;; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+        }
+    </style>
+
+</head>
+<body>
+
+<h2>Book Store - Application</h2>
+<form method="POST" th:action="@{/}" th:object="${book}">
+    <table>
+        <tr>
+            <td>Book Name</td>
+            <td><input th:field="*{bookName}" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Author Name</td>
+            <td><input th:field="*{authorName}" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Book Price</td>
+            <td><input th:field="*{bookPrice}" type="text"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input class="button" type="submit" value="Submit"/></td>
+        </tr>
+    </table>
+</form>
+
+<hr/>
+
+<table border="1" th:if="${not #lists.isEmpty(books)}">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Author Name</th>
+    </tr>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.bookId}"></td>
+        <td th:text="${book.bookName}"></td>
+        <td th:text="${book.bookPrice}"></td>
+        <td th:text="${book.authorName}"></td>
+    </tr>
+</table>
+
+<hr/>
+
+
+<h1>Mr. HENDISANTIKA</h1>
+<p>Email: jvmindonesia@gmail.com</p>
+<p>
+    Visit : <a href="https://s.id/jvmindonesia">Facebook Group</a>
+</p>
+<p>
+    <b> Copy Rights @ JVM INDONESIA </b>
+</p>
+
+</body>
+</html>
