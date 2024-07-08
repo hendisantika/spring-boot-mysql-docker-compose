@@ -1,0 +1,4 @@
+CREATE TABLE tests
+(
+    id bigint AUTO_INCREMENT PRIMARY KEY
+);
